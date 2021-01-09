@@ -29,7 +29,6 @@ app.get('/', (req: Request, res: Response) => {
 
 app.post('/', async (req: Request, res: Response) => {
     const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator }: Body = req.body;
-    console.log(req.body);
 
     const rankCard = new canvacord.Rank()
         .setAvatar(avatar)
@@ -38,7 +37,7 @@ app.post('/', async (req: Request, res: Response) => {
         .setRequiredXP(nextLevelXp)
         .setRank(rank)
         .setStatus(presence)
-        .setFontSize(26)
+        .setFontSize('26px')
         .setProgressBar("#FFFFFF", "COLOR")
         .setUsername(username, displayHexColor)
         .setDiscriminator(discriminator);
