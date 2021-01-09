@@ -44,7 +44,7 @@ app.post('/', async (req: Request, res: Response) => {
 });
 
 export const init = () => {
-    app.listen(80, () => {
+    app.listen(3000, () => {
         return console.log('Ready!');
     });
 }
