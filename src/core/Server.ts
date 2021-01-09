@@ -36,11 +36,8 @@ app.post('/', async (req: Request, res: Response) => {
 
     const img = await rankCard.build();
 
-    res.writeHead(200, {
-        'Content-Type': 'image/png',
-        'Content-Length': img.length
-    });
-    res.end(img);
+    res.contentType('image/jpeg');
+    res.send(img);
 });
 
 export const init = () => {
