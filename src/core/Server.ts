@@ -2,13 +2,25 @@ import express, { Application, Request, Response } from 'express';
 import canvacord from 'canvacord';
 import bodyParser from 'body-parser';
 
+interface Body {
+    avatar: string;
+    exp: number;
+    level: number;
+    nextLevelXp: number;
+    rank: number;
+    presence: 'online' | 'idle' | 'dnd' | 'offline' | 'streaming';
+    username: string;
+    displayHexColor: string;
+    discriminator: number | string;
+}
+
 const app: Application = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/', async (req: Request, res: Response) => {
-    const { avatar, exp, level, nextLevelXp, rank, username, displayHexColor, discriminator } = req.body;
+    const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator }: Body = req.body;
 
     const rankCard = new canvacord.Rank()
         .setAvatar(avatar)
@@ -16,7 +28,7 @@ app.post('/', async (req: Request, res: Response) => {
         .setLevel(level)
         .setRequiredXP(nextLevelXp)
         .setRank(rank)
-        .setStatus('dnd')
+        .setStatus(presence)
         .setFontSize('26px')
         .setProgressBar("#FFFFFF", "COLOR")
         .setUsername(username, displayHexColor)
