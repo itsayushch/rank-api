@@ -17,12 +17,11 @@ interface Body {
 const app: Application = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.post('/', async (req: Request, res: Response) => {
     const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator }: Body = req.body;
     console.log(req.body);
-    
+
     const rankCard = new canvacord.Rank()
         .setAvatar(avatar)
         .setCurrentXP(exp)
