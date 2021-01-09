@@ -1,3 +1,5 @@
+import Env from 'dotenv';
+Env.config();
 import express, { Request, Response } from 'express';
 import canvacord from 'canvacord';
 import bodyParser from 'body-parser';
@@ -15,6 +17,8 @@ interface Body {
 }
 
 const app = express();
+
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -45,6 +49,6 @@ app.post('/', async (req: Request, res: Response) => {
 });
 
 
-app.listen(3000, () => {
-    return console.log('Ready!');
+app.listen(port, () => {
+    return console.log(`App listening on port: ${port}`);
 });
