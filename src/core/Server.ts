@@ -29,7 +29,7 @@ app.post('/', async (req: Request, res: Response) => {
         .setRequiredXP(nextLevelXp)
         .setRank(rank)
         .setStatus(presence)
-        .setFontSize('26px')
+        .setFontSize(26)
         .setProgressBar("#FFFFFF", "COLOR")
         .setUsername(username, displayHexColor)
         .setDiscriminator(discriminator);
