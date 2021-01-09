@@ -18,6 +18,10 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/', (req: Request, res: Response) => {
+    return res.json({ success: true });
+});
+
 app.post('/', async (req: Request, res: Response) => {
     const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator }: Body = req.body;
     console.log(req.body);
@@ -36,7 +40,7 @@ app.post('/', async (req: Request, res: Response) => {
 
     const img = await rankCard.build();
 
-    res.contentType('image/jpeg');
+    res.contentType('image/png');
     res.send(img);
 });
 
