@@ -1,34 +1,20 @@
-import Env from 'dotenv';
-Env.config();
-import express, { Request, Response } from 'express';
-import canvacord from 'canvacord';
-import bodyParser from 'body-parser';
-
-interface Body {
-    avatar: string;
-    exp: number;
-    level: number;
-    nextLevelXp: number;
-    rank: number;
-    presence: 'online' | 'idle' | 'dnd' | 'offline' | 'streaming';
-    username: string;
-    displayHexColor: string;
-    discriminator: number | string;
-}
-
+require('dotenv').config();
+const express = require('express');
 const app = express();
+
+const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
     return res.json({ success: true });
 });
 
-app.post('/', async (req: Request, res: Response) => {
-    const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator }: Body = req.body;
+app.post('/', async (req, res) => {
+    const { avatar, exp, level, nextLevelXp, rank, presence, username, displayHexColor, discriminator } = req.body;
 
     const rankCard = new canvacord.Rank()
         .setAvatar(avatar)
