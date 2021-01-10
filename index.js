@@ -26,7 +26,7 @@ app.post('/', async (req, res) => {
         .setRank(rank)
         .setStatus(presence)
         .setProgressBar(displayHexColor, "COLOR")
-        .setOverlay('#FFFFFF', 1) 
+        .setOverlay('#23272a', 0, false) 
         .setBackground('COLOR', '#23272a')
         .setUsername(username, displayHexColor)
         .setDiscriminator(discriminator);
