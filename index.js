@@ -6,6 +6,7 @@ const canvacord = require("canvacord");
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 5000;
+const { wakeUp } = require('./wakeup');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,7 +25,8 @@ app.post('/', async (req, res) => {
         .setRequiredXP(nextLevelXp)
         .setRank(rank)
         .setStatus(presence)
-        .setProgressBar("#FFFFFF", "COLOR")
+        .setProgressBar(displayHexColor, "COLOR")
+        .setBackground('COLOR', '#E74C3C')
         .setUsername(username, displayHexColor)
         .setDiscriminator(discriminator);
 
@@ -36,5 +38,6 @@ app.post('/', async (req, res) => {
 
 
 app.listen(port, () => {
+    wakeUp();
     return console.log(`App listening on port: ${port}`);
 });
